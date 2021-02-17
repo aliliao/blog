@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    {{template "header"}}
+    <body>
+        {{template "navbar" .}}
+
+        <!-- 文章展示 -->
+        <!-- 参考样式：view-source:https://v3.bootcss.com/examples/theme/ -->
+        <div class="container">
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="container theme-showcase" role="main">
+                <div class="jumbotron">
+                    {{range .Topics}}
+                    <div class="page-header">
+                        <h2>{{.Title}}</h2>
+                        <h6 class="text-muted">{{.Author}}发表于 <code>{{.Created.Local.Format "2006/01/02 15:04:05"}}</code>, 共有{{.Views}}次浏览，{{.ReplyCount}}个评论。</h6>
+
+                        <p>
+                            {{if .IsMarkdown}}
+                                {{str2html .Content}}
+                            {{else}}
+                                {{.Content}}
+                            {{end}}
+                        </p>
+                    </div>
+                    <hr class="hr-text" data-content="AND">
+                    {{end}}
+                </div>
+            </div>
+        </div>
+
+        {{template "footer"}}
+    </body>
+</html>

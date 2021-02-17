@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    {{template "header" .}}
+    <body>
+        {{template "navbar" .}}
+
+        <div class="container theme-showcase" role="main">
+            <div class="jumbotron">
+                <h2>{{.Topic.Title}}</h2>
+                {{with .Topic}}
+                <h6 class="text-muted">{{.Author}}发表于 <code>{{.Created.Local.Format "2006/01/02 15:04:05"}}</code>,
+                    最后更新<code>{{.Updated.Local.Format "2006/01/02 15:04:05"}}</code>，共有{{.Views}}次浏览，{{.ReplyCount}}个评论。</h6>
+                {{end}}
+                <hr class="hr-text" data-content="AND">
+                <a href="/topic/modify?tid={{.Topic.Id}}" class="btn btn-default">修改</a>
+                <p>
+                    {{if .Topic.IsMarkdown}}
+                        {{str2html .Topic.Content}}
+                    {{else}}
+                        {{.Topic.Content}}
+                    {{end}}
+                </p>
+            </div>
+        </div>
+
+        <!-- fake comment -->
+        <div class="container">
+            <div class="comments-data"> 评论 (2) </div>
+            <div class="comments-container">
+                <ol class="comment_list clearfix">
+                    <li class="comment depth-1" id="li-comment-210436">
+                        <div id="comment-210436" class="comment-body">
+                            <div class="comment-avatar">
+                                <img alt="avatar" src="https://secure.gravatar.com/avatar/759d88c5ac1483670ca7e4ecc377ef82?s=50&#038;d=mm&#038;r=g" srcset="https://secure.gravatar.com/avatar/759d88c5ac1483670ca7e4ecc377ef82?s=100&#038;d=mm&#038;r=g 2x" class="avatar avatar-50" height="50" width="50" />
+                            </div>
+                            <span class="comment-floor">#1楼 |
+                                <!--div class="comment-reply"-->
+                                    <a rel='nofollow' class='comment-reply-link' href='https://ihacksoft.com/faststone-capture-7-6.html?replytocom=210436#respond' onclick='return addComment.moveForm( "comment-210436", "210436", "respond", "302" )' aria-label='回复给小波'>回复</a>
+                                     0 |
+                                    <a href="http://www.baidu.com">
+                                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">5</span>
+                                    </a>
+                                <!--/div-->
+                            </span>
+
+                            <div class="comment-data">
+                                <span class="comment-span ">小波</span>
+                                <span class="comment-span comment-date text-muted">
+                                    <small>2015-09-28 12:10</small>
+                                </span>
+                            </div>
+
+                            <div class="comment-text">
+                                <p>非常感谢分享。</p>
+                                <div class="wp-useragent">
+                                    <small>
+                                        <code>| 来自 Google Chrome 45.0.2454.85 Windows 8.1 x64 Edition |</code>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </li> <!-- #comment-## -->
+                    <li class="comment depth-1" id="li-comment-49381">
+                        <div id="comment-49381" class="comment-body">
+                            <div class="comment-avatar"><img alt="avatar" src="https://secure.gravatar.com/avatar/5d3571278a49c6216d867df1ae445a07?s=50&#038;d=mm&#038;r=g" srcset="https://secure.gravatar.com/avatar/5d3571278a49c6216d867df1ae445a07?s=100&#038;d=mm&#038;r=g 2x" class="avatar avatar-50" height="50" width="50" /></div>
+                            <span class="comment-floor">#2楼 |
+                                <!--div class="comment-reply"-->
+                                    <a rel='nofollow' class='comment-reply-link' href='https://ihacksoft.com/faststone-capture-7-6.html?replytocom=210436#respond' onclick='return addComment.moveForm( "comment-210436", "210436", "respond", "302" )' aria-label='回复给小波'>回复</a>
+                                     2 |
+                                    <a href="http://www.baidu.com">
+                                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">5</span>
+                                    </a>
+                                <!--/div-->
+                            </span>
+
+                            <div class="comment-data">
+                                <span class="comment-span ">bigman</span>
+                                <span class="comment-span comment-date">
+                                    <small>2014-05-14 12:37</small>
+                                </span>
+                            </div>
+                            <div class="comment-text"><p>靠 原来是测试版  ，只能下载500个文件</p>
+                                <small><code>
+                                    | 来自 Internet Explorer 8.0 Windows 7 x64 Edition |
+                                </code></small>
+                            </div>
+
+                        </div>
+                        <ul class="children">
+                            <li class="comment depth-2" id="li-comment-174794">
+                                <div id="comment-174794" class="comment-body comment-children-body">
+                                    <div class="comment-avatar"><img alt="avatar" src="https://secure.gravatar.com/avatar/06438279d2cb292fab253c8c598826aa?s=30&#038;d=mm&#038;r=g" srcset="https://secure.gravatar.com/avatar/06438279d2cb292fab253c8c598826aa?s=60&#038;d=mm&#038;r=g 2x" class="avatar avatar-30" height="30" width="30" /></div>
+                                    <span class="comment-floor"></span>
+
+                                    <div class="comment-data">
+                                        <span class="comment-span ">小神娱乐</span>
+                                        <span class="comment-span comment-date">
+                                            <small>2015-08-31 05:20</small>
+                                        </span>
+                                    </div>
+                                    <div class="comment-text">
+                                        <span class="comment-to">
+                                            <a href="#comment-49381" title="靠 原来是测试版  ，只能下载500个文件">@bigman</a>：
+                                        </span>
+                                        @<a href="#comment-49381" rel="nofollow">bigman</a>
+                                        谢谢分享～
+                                        <div class="wp-useragent">
+                                            <code>| 来自 Microsoft Edge 12.10240 Windows 10 x64 Edition |</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li><!-- #comment-## -->
+                            <li class="comment depth-2" id="li-comment-208699">
+                                <div id="comment-208699" class="comment-body comment-children-body">
+                                    <div class="comment-avatar"><img alt="avatar" src="https://secure.gravatar.com/avatar/53ec15d40f86712d6a7df6fe813c4aa6?s=30&#038;d=mm&#038;r=g" srcset="https://secure.gravatar.com/avatar/53ec15d40f86712d6a7df6fe813c4aa6?s=60&#038;d=mm&#038;r=g 2x" class="avatar avatar-30" height="30" width="30" /></div>
+                                    <span class="comment-floor"></span>
+
+                                    <div class="comment-data">
+                                        <span class="comment-span ">啥是啥</span>
+                                        <span class="comment-span comment-date"><small>2015-09-26 23:36</small></span>
+                                    </div>
+                                    <div class="comment-text">
+                                        <span class="comment-to">
+                                            <a href="#comment-174794" title="@bigman">@小神娱乐</a>：
+                                        </span>
+                                        @<a href="#comment-174794" rel="nofollow">小神娱乐</a>谢谢分享！
+                                        <div class="wp-useragent">
+                                            <code>| 来自 Internet Explorer 11.0 Windows 10 |</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li><!-- #comment-## -->
+                        </ul><!-- .children -->
+                </ol>
+            </div>
+        </div>    </div>
+        <!-- #primary -->
+
+        <!-- 评论框 -->
+        <div class="container">
+            <h2>发表评论</h2>
+            <form method="POST" action="/topic/add_comment">
+                <input type="hidden" name="id" value="{{.Topic.Id}}">
+                <div class="form-group">
+                    <label>昵称：</label>
+                    <input type="text" class="form-control" name="nickname" placeholder="显示的昵称" size="15">
+                </div>
+                <div class="=form-group">
+                    <label>内容：</label>
+                    <textarea type="text" class="form-control" name="comment" placeholder="新年快乐呀～"></textarea>
+                </div>
+                <div class="=form-group">
+                    <input type="hidden" id="osinfo" name="osinfo"></input>
+                    <input type="hidden" id="browserinfo" name="browserinfo"></input>
+                </div>
+                <button type="submit" class="btn btn-default pull-right" >提交</button>
+            </form>
+        </div>
+
+        {{template "footer" .}}
+        <script src="/static/js/my.getinfo.js"></script>
+        <script type="text/javascript">
+            document.getElementById("osinfo").value = OsInfo;
+            document.getElementById("browserinfo").value = BrowserInfo;
+        </script>
+    </body>
+</html>

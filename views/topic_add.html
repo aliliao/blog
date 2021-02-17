@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    {{template "header" .}}
+    <body>
+        {{template "navbar" .}}
+
+        <div class="container theme-showcase" role="main">
+            <div class="jumbotron">
+                <h2>新增文章</h2>
+                <form method="POST" action="/topic">
+                    <div class="form-group">
+                        <label>文章标题：</label>
+                        <input type="text" name="title" id="title" class="form-control">
+                        <label>分类：</label>
+                        <input type="text" name="category" id="category" class="form-control" placeholder="可选">
+                    </div>
+                    <div class="form-group">
+                        <label>文章内容：
+                            <label>
+                                <input name="markdown" id="markdown" type="checkbox" value="true"> Markdown
+                            </label>
+                        </label>
+                        <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default pull-right" onclick="return checkInput();">发布</button>
+                </form>
+            </div>
+        </div>
+
+        {{template "footer" .}}
+        <script>
+            function checkInput() {
+                var title = document.getElementById("title")
+                if (title.value.length == 0) {
+                    alert("文章标题不能为空！");
+                    return false
+                }
+                var content = document.getElementById("content")
+                if (content.value.length == 0) {
+                    alert("文章内容不能为空！");
+                    return false
+                }
+                return true
+            }
+        </script>
+    </body>
+</html>

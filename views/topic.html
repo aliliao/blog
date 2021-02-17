@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    {{template "header" .}}
+    <body>
+        {{template "navbar" .}}
+
+        <div class="container theme-showcase" role="main">
+            <div class="jumbotron">
+                <h2>文章列表</h2>
+                <a href="/topic/add" class="btn btn-default">新增</a>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>标题</th>
+                            <th>作者</th>
+                            <th>分类</th>
+                            <th>浏览量</th>
+                            <th>更新时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range .Topics}}
+                        <tr>
+                            <th>{{.Id}}</th>
+                            <th><a href="/topic/view/{{.Id}}">{{.Title}}</a></th>
+                            <th>{{.Author}}</th>
+                            <th>{{.Category}}</th>
+                            <th>{{.Views}}</th>
+                            <th>{{.Updated.Local.Format "2006/01/02 15:04:05"}}</th>
+                            <th>
+                                <a href="/topic/modify?tid={{.Id}}">修改</a> |
+                                <a href="/topic?op=del&id={{.Id}}">删除</a>
+                            </th>
+                        </tr>
+                        {{end}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        {{template "footer" .}}
+    </body>
+</html>

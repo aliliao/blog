@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    {{template "header" .}}
+    <body>
+        {{template "navbar" .}}
+
+        <!-- reference: https://v3.bootcss.com/examples/signin/ -->
+        <div class="container">
+            {{if .IsSignIn}}
+            <form method="POST" action="/signin" class="form-signin">
+                <h3 class="form-signin-heading">Please sign in</h3>
+            {{else}}
+            <form method="POST" action="/signup" class="form-signin">
+                <h3 class="form-signin-heading">Please sign up</h3>
+            {{end}}
+                <label class="sr-only">Email address</label>
+                <input name="uname" id="inputAcount" class="form-control" placeholder="Account" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input name="pwd" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+                <!-- Singup warming -->
+                {{if .HasSignUpTips}}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{.SignUpTips}}
+                </div>
+                {{end}}
+
+                <!-- Signin warming -->
+                {{if .SignInAuthFailed}}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>错误!</strong> 账号不存在或密码不正确！
+                </div>
+                {{end}}
+
+                <div class="checkbox">
+                    <label>
+                        <input name="autoLogin" type="checkbox" value="true"> 记住密码
+                    </label>
+                </div>
+                {{if .IsSignIn}}
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
+                {{else}}
+                <button class="btn btn-lg btn-primary btn-block" onclick="return checkInputAccount();" type="submit">注册</button>
+                {{end}}
+            </form>
+        </div> <!-- /container -->
+
+        {{template "footer"}}
+        <script>
+            function checkInputAccount() {
+                var uname = document.getElementById("inputAcount")
+                if (uname.value.length < 4) {
+                    alert("请设置长度大于3的账号！");
+                    return false
+                }
+                var pwd = document.getElementById("inputPassword")
+                if (pwd.value.length < 5) {
+                    alert("请设置长度大于4的密码！");
+                    false
+                }
+                return true
+            }
+            function backToHome() {
+                window.location.href = "/";
+                return false
+            }
+        </script>
+    </body>
+</html>

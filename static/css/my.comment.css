@@ -1,0 +1,141 @@
+.clearfix:after, .clearfix:before {
+    display: table;
+    content: ''
+}
+
+.clearfix:after {
+    clear: both;
+    overflow: hidden
+}
+
+.clearfix {
+    zoom: 1
+}
+
+.comments-data {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.comment-body .comment-text {
+    padding-bottom: 10px;
+    line-height: 24px;
+    word-break: break-all
+}
+
+.comment-body .wp-useragent {
+    font-size:12px;
+    color:#999
+}
+
+.comment-body .comment-text img {
+    vertical-align: middle
+}
+
+.comment-body {
+    position: relative;
+    padding-right: 30px;
+    padding-left: 70px;
+    min-height: 25px
+}
+
+.comment-avatar, .comment-floor {
+    position: absolute;
+    top: 0
+}
+
+.comment-children-body .comment-avatar {
+    top: 15px
+}
+
+.comment-floor {
+    top: 10px;
+    right: 0;
+    display: block;
+    color: #666
+}
+
+.comment-avatar {
+    left: 0
+}
+
+
+.comment.depth-1 {
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ededed
+}
+
+#comments .children {
+    position: relative;
+    z-index: 5
+}
+
+
+#comments .children .children {
+    padding: 0;
+    border: 0;
+    background: 0
+}
+
+#comments .children:after, #comments .children:before {
+    position: absolute;
+    top: -15px;
+    left: 5px;
+    z-index: 99;
+    width: 0;
+    border: solid transparent;
+    content: ""
+}
+
+#comments .children:before {
+    z-index: 100;
+    border-color: hsla(0, 0%, 100%, 0);
+    border-width: 8px;
+    border-bottom-color: #fff
+}
+
+#comments .children:after {
+    top: -17px;
+    left: 4px;
+    border-color: hsla(0, 0%, 100%, 0);
+    border-width: 9px;
+    border-bottom-color: #e5e5e5
+}
+
+#comments .children .children:after, #comments .children .children:before {
+    display: none
+}
+
+.comment-reply {
+    padding-bottom: 10px
+}
+
+/* 评论显示时间 */
+.comment-date, .comment-floor a, .comment-to, .comment-reply-link {
+    color: #999
+}
+
+.comment-to a{
+    color:#999
+}
+
+.comment-date {
+    padding-left: 15px;
+}
+
+/* 圆头像 */
+.avatar {
+    border-radius: 50%;
+    position: relative;
+}
+
+.avatar:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1px solid rgba(0, 0, 0, .05);
+}
