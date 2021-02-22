@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	_DB_NAME    = "data/blog.db"
-	_DB_DRIVER  = "sqlite3"
+	_DB_NAME   = "data/blog.db"
+	_DB_DRIVER = "sqlite3"
 )
 
 func init() {
@@ -65,28 +65,30 @@ type Topic struct {
 
 // 用户
 type User struct {
-	Id             int64
-	Uid            int64
-	UserName       string
-	NickName       string
-	Pwd            string
-	IsAdmin        bool   // 是否管理员
-	LoginIpList    string // 登入IP列表 逗号分隔
-	TopicIdList    string // 文章ID列表 逗号分隔
-	VideoIdList    string // 视频ID列表 逗号分隔
-	MusicIdList    string // 音乐ID列表 逗号分隔
-	ImageIdList    string // 图片ID列表 逗号分隔
-	CategoryIdList string // 分类ID列表 逗号分隔
+	Id       int64
+	UserName string
+	NickName string
+	Pwd      string
+	IsAdmin  bool   // 是否管理员()
+	LoginIp  string // 登入IP
+	//TopicIdList    string // 文章
+	//VideoIdList    string // 视频
+	//MusicIdList    string // 音乐
+	//ImageIdList    string // 图片
+	//CategoryIdList string // 分类
 }
 
 // 评论
 type Comment struct {
-	Id         int64
-	Tid        int64  // topic id
-	Uid        int64  // 注册用户的user id
-	Content    string // 评论内容
-	LikesCount int64  // 点赞数
-
+	Id          int64
+	Tid         int64
+	NickName    string
+	Content     string    `orm:"size(2000)"`
+	LikesCount  int64     // 点赞数
+	CommentTime time.Time `orm:"index"`
+	IpAddr      string
+	BrowserInfo string
+	OsInfo      string
 }
 
 func registerDB() {
@@ -95,7 +97,7 @@ func registerDB() {
 		os.Create(_DB_NAME)
 	}
 
-	orm.RegisterModel(new(Category), new(Topic), new(User))
+	orm.RegisterModel(new(Category), new(Topic), new(User), new(Comment))
 	orm.RegisterDriver(_DB_DRIVER, orm.DRSqlite)
 	orm.RegisterDataBase("default", _DB_DRIVER, _DB_NAME)
 }

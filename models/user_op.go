@@ -1,14 +1,8 @@
 package models
 
 import (
-	"errors"
 	"github.com/beego/beego/v2/client/orm"
 )
-
-var (
-	ErrAlreadyExists = errors.New("username already exists.")
-)
-
 
 func AddUser(username, pwd string) error {
 	u, err := GetUserByUsername(username)

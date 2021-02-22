@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"blog/models"
-	"fmt"
 	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 	"github.com/gomarkdown/markdown"
@@ -18,8 +17,6 @@ func (this *TopicController) Get() {
 	topics, err := models.FetchAllTopic(false)
 	if err == nil {
 		this.Data["Topics"] = topics
-	} else {
-		logs.Error(err)
 	}
 
 	// TODO: 删除文章权限管理
@@ -87,8 +84,8 @@ func (this *TopicController) Add() {
 }
 
 func (this *TopicController) View() {
-	id := this.Ctx.Input.Param("0")
-	topic, err := models.FetchTopicById(id)
+	tid := this.Ctx.Input.Param("0")
+	topic, err := models.FetchTopicById(tid)
 	if err != nil {
 		logs.Error(err)
 		this.Redirect("/", 404)
@@ -102,6 +99,14 @@ func (this *TopicController) View() {
 		md := []byte(topic.Content)
 		output := markdown.ToHTML(md, parser, nil)
 		topic.Content = string(output)
+	}
+
+	// comments display
+	comments, err := models.FetchAllComments(tid)
+	if err == nil {
+		this.Data["Comments"] = comments
+	} else {
+		logs.Error(err)
 	}
 
 	this.Data["Topic"] = topic
@@ -123,11 +128,4 @@ func (this *TopicController) Modify() {
 	this.Data["Title"] = "修改 - 我的博客"
 	this.Data["IsLogin"] = IsLogin(this.Ctx.Request)
 	this.TplName = "topic_modify.html"
-}
-
-func (this *TopicController) Add_Comment() {
-	values, _ := this.Input()
-	fmt.Println(values)
-	this.Ctx.WriteString(fmt.Sprint(values))
-	this.Ctx.WriteString(this.Ctx.Request.RemoteAddr)
 }
